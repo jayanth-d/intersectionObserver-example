@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ele{
+            height : 300px;
+            background-color: aquamarine;
+            width: 45%;
+            transition: background-color 3s;
+        }
+        h1{
+            margin-bottom: 1000px;
+        }
+        body{
+            text-align: center;
+        }
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 10%;
+            row-gap: 50px;
+        }
+        .red{
+            background-color: red;
+        }
+
+        @media(max-width:400px){
+            .row{
+                display: flex;
+                flex-wrap: wrap;
+                row-gap: 50px;
+            }
+            .ele{
+            width: 100%;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Testing intersection observer!!!</h1>
+    <div class="row">
+        <div class="ele1 ele"></div>
+        <div class="ele2 ele"></div>
+        <div class="ele3 ele"></div>
+        <div class="ele4 ele"></div>
+        <div class="ele5 ele"></div>
+        <div class="ele6 ele"></div>
+    </div>
+    <script>
+        let obj = {root:null,  rootMargin: '0px',
+        threshold: 1.0};
+        let observer = new IntersectionObserver(function(entries,obser){
+            entries.forEach(function(entry){
+                if(entry.isIntersecting){
+                    entry.target.classList.toggle("red");
+                }
+            });
+        },obj)
+        let ob1 = document.querySelector(".ele1");
+        let ob2 = document.querySelector(".ele2");
+        let ob3 = document.querySelector(".ele3");
+        let ob4 = document.querySelector(".ele4");
+        let ob5 = document.querySelector(".ele5");
+        let ob6 = document.querySelector(".ele6");
+        observer.observe(ob1);
+        observer.observe(ob2);
+        observer.observe(ob3);
+        observer.observe(ob4);
+        observer.observe(ob5);
+        observer.observe(ob6);
+    </script>
+</body>
+</html>
